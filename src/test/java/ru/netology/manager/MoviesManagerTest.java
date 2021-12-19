@@ -15,7 +15,7 @@ class MoviesManagerTest {
     @Test
     public void shouldAddMovie() {
         MoviesManager manager = new MoviesManager(10);
-        Movie movie0 = new Movie(1,"Бладшот", "боевик");
+        Movie movie0 = new Movie(1, "Бладшот", "боевик");
         manager.add(movie0);
         Movie[] movies = manager.get();
         assertEquals(1, movies.length);
@@ -33,10 +33,13 @@ class MoviesManagerTest {
         manager.add(movie1);
         manager.add(movie2);
 
+        Movie[] expectedMovies = {
+                movie2, movie1,
+        };
+
         Movie[] movies = manager.get();
         assertEquals(2, movies.length);
-        assertEquals(movie2.id, movies[0].id);
-        assertEquals(movie1.id, movies[1].id);
+        assertArrayEquals(expectedMovies, movies);
     }
 
 }
